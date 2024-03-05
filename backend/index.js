@@ -14,6 +14,11 @@ app.post("/signup",async (req,res)=>{
         })
         return
     }
+   const user= await User.findOne({
+        username:userPayload.username
+    })
+
+    if(!user){
     await User.create({
         username:userPayload.username,
         password:userPayload.password
@@ -22,6 +27,12 @@ app.post("/signup",async (req,res)=>{
     res.json({
         msg:"User register Successfully"
     })
+    }
+    else{
+        res.json({
+            msg:"Username already taken"
+        })
+    }
 
 
 })

@@ -1,0 +1,26 @@
+
+
+form{
+    margin: 0;
+    padding: 0;
+}
+
+input{
+    padding: 10px;
+    margin: 15px;
+    font-size: 17px;
+}
+
+input:hover {
+    border-color: #646cff;
+    filter: drop-shadow(0 0 2em #646cffaa);
+}
+input:focus,
+input:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+}
+
+button{
+    margin-left: 18px;
+}
+

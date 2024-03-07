@@ -45,6 +45,7 @@ app.post("/signin",(req,res)=>{
 
 app.post("/todo",async (req,res)=>{
     const create = req.body;
+    console.log(create)
     const pasreInfo= createTodo.safeParse(create)
     if(!pasreInfo.success){
         res.json({
@@ -52,14 +53,19 @@ app.post("/todo",async (req,res)=>{
         })
         return
     }
-
-    await Todo.create({
-        title:create.title,
-        desc:create.desc,
-        completed:false
-    })
-
-    res.send("Todo added Sucessfully")
+    try{
+        await Todo.create({
+            title:create.title,
+            desc:create.desc,
+            completed:false
+        })
+        res.send("Todo added Sucessfully")
+    }
+    catch(err){
+        console.log(err)
+    }
+    
+   
 
 })
 

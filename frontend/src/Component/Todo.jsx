@@ -5,11 +5,10 @@ function Todo({todos}){
    console.log({todos})
    return (
     <>
+        <div className="todos">
         {
             todos.map((e)=>{
-                function setState(e){
-                    alert(e)
-                }
+                
                 return<>
                 <br/>
                 <div className="todo" key={e.title}>
@@ -24,8 +23,20 @@ function Todo({todos}){
                 </>
             })
         }
+        </div>
     </>
    )
+   function setState(e){
+    fetch("http://localhost:3000/completed",{
+        method:"PUT",
+        headers:{
+            'Content-type':'application/json' 
+        },
+        body:JSON.stringify({
+            id:e
+        })
+    })
+}
 }
 
 export default Todo;

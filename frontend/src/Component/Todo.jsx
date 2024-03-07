@@ -1,30 +1,26 @@
 import React from 'react';
+import '../Style/todo.css'
+function Todo({todos}){
 
-function Todo(){
-
-    const arr=[
-        {   id:1,
-            title:"Todo1",
-            desc:"This is desc 1",
-            comp:true
-        },
-        {
-            id:2,
-            title:"Todo2",
-            desc:"This is desc2",
-            comp:false
-        }
-    ]
+   console.log({todos})
    return (
     <>
         {
-            arr.map((e)=>{
-                return <>
-                    <div  key={e.id}>
-                    <h2>{e.title}</h2>
-                    <h4>{e.desc}</h4>
-                    <button>{e.comp?"Done":"Mark as done"}</button>
+            todos.map((e)=>{
+                function setState(e){
+                    alert(e)
+                }
+                return<>
+                <br/>
+                <div className="todo" key={e.title}>
+                    <div className="title">
+                        <h2>{e.title}</h2>
                     </div>
+                    <div className="desc">
+                        <h3>{e.desc}</h3>
+                    </div>
+                    <button onClick={()=>setState(e._id)}>{e.completed?"Done":"Mark as Done"}</button>
+                </div>
                 </>
             })
         }

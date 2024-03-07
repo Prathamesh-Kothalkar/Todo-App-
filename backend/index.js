@@ -1,9 +1,11 @@
 const express = require('express');
 const {createTodo, createUser, updateTodo}=require('./validate');
 const { Todo,User} = require('./db');
+const cors = require('cors')
 const app=express();
 
 app.use(express.json())
+app.use(cors())
 
 app.post("/signup",async (req,res)=>{
     const userPayload=req.body;

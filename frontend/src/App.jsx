@@ -3,7 +3,7 @@ import React from 'react'
 import './App.css'
 import Form from './Component/Form'
 import Navbar from './Component/Navbar'
-import Todo from './Component/Todo'
+
 function App() {
   
 
@@ -11,7 +11,6 @@ function App() {
     <>
       <Navbar/>
       <Form/>
-      <Todo/>
     </>
   )
 }

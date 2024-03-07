@@ -88,6 +88,15 @@ app.put("/completed",async (req,res)=>{
      res.json({msg:"Updated..!"})
 })
 
+app.delete("/delete",async (req,res)=>{
+    const id=req.body.id;
+    await Todo.deleteOne({
+        _id:id
+    })
+
+    res.send("deleted")
+})
+
 app.listen(3000,()=>{
     console.log("Server is running...")
 })

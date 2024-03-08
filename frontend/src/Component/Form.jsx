@@ -5,6 +5,7 @@ function Form() {
     const [arr, setArr] = useState([])
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
+    const [createTodoFlag, setCreateTodoFlag] = useState(false);
 
     useEffect(() => {
         fetch("http://localhost:3000/todos")
@@ -14,7 +15,7 @@ function Form() {
             .then((data) => {
                 setArr(data.Todos)
             })
-    }, [createTodo])
+    },[createTodo])
     return (
         <>
             <form>
@@ -50,7 +51,8 @@ function Form() {
                     desc: desc
                 })
             })
-            .then(() => { alert("Added") })
+            .then(() => { alert("Added")
+        setCreateTodoFlag(true) })
             .catch((e) => console.log(e))
 
             setTitle("");

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import '../Style/form.css'
 import Todo from "./Todo";
+import Navbar from "./Navbar";
 function Form() {
     const [arr, setArr] = useState([])
     const [title, setTitle] = useState("");
@@ -8,7 +9,7 @@ function Form() {
     const [createTodoFlag, setCreateTodoFlag] = useState(false);
 
     useEffect(() => {
-        fetch("http://localhost:3000/todos")
+        fetch("http://192.168.56.1:3000/todos")
             .then((res) => {
                 return res.json()
             })
@@ -18,6 +19,7 @@ function Form() {
     },[createTodo])
     return (
         <>
+            <Navbar visible={true}/>
             <form>
 
                 <input type="text" name="title" id="title"

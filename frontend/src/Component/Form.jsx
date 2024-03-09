@@ -6,7 +6,7 @@ function Form() {
     const [arr, setArr] = useState([])
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
-    const [createTodoFlag, setCreateTodoFlag] = useState(false);
+   
 
     useEffect(() => {
         fetch("http://192.168.56.1:3000/todos")
@@ -42,7 +42,7 @@ function Form() {
 
     function createTodo(e) {
         e.preventDefault();
-        if (!(title == " " && desc == " ")) {
+        if ((title && desc)) {
             fetch("http://localhost:3000/todo", {
                 method: "POST",
                 headers: {

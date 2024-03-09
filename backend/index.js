@@ -39,8 +39,26 @@ app.post("/signup",async (req,res)=>{
 
 })
 
-app.post("/signin",(req,res)=>{
+app.post("/signin",async (req,res)=>{
+    const userPayload=req.body;
+    const userParse = createUser.safeParse(userPayload);
+    if(userParse.success){
+        const user =await User.findOne({
+        username:userPayload.username,
+        password:userPayload.password
+        })
+        if(user){
+            res.json({
+                msg:true
+            })
+        }
+        else{
+            res.json({
+                msg:false
+            })
+        }
 
+    }
 })
 
 app.post("/todo",async (req,res)=>{

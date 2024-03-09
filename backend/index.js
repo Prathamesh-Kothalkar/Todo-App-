@@ -1,7 +1,10 @@
 const express = require('express');
+const jwt = require('jsonwebtoken')
 const {createTodo, createUser, updateTodo}=require('./validate');
 const { Todo,User} = require('./db');
-const cors = require('cors')
+const cors = require('cors');
+const { JWT_PASS } = require('./config');
+const userMiddleWare = require('./middleware/user');
 const app=express();
 
 app.use(express.json())
@@ -39,6 +42,8 @@ app.post("/signup",async (req,res)=>{
 
 })
 
+
+
 app.post("/signin",async (req,res)=>{
     const userPayload=req.body;
     const userParse = createUser.safeParse(userPayload);
@@ -48,9 +53,11 @@ app.post("/signin",async (req,res)=>{
         password:userPayload.password
         })
         if(user){
-            res.json({
-                msg:true
-            })
+           const token =jwt.sign({user},JWT_PASS);
+           res.json({
+            msg:true,
+            jwt:token
+        })
         }
         else{
             res.json({
@@ -61,7 +68,10 @@ app.post("/signin",async (req,res)=>{
     }
 })
 
-app.post("/todo",async (req,res)=>{
+
+
+
+app.post("/todo",userMiddleWare,async (req,res)=>{
     const create = req.body;
     console.log(create)
     const pasreInfo= createTodo.safeParse(create)
@@ -87,14 +97,14 @@ app.post("/todo",async (req,res)=>{
 
 })
 
-app.get("/todos",async (req,res)=>{
+app.get("/todos",userMiddleWare,async (req,res)=>{
     const todos=await Todo.find({})
     res.json({
         Todos:todos
     })
 })
 
-app.put("/completed",async (req,res)=>{
+app.put("/completed",userMiddleWare,async (req,res)=>{
     const {id}=req.body;
     const parseId=updateTodo.safeParse({id});
     if(!parseId.success){
@@ -106,7 +116,7 @@ app.put("/completed",async (req,res)=>{
      res.json({msg:"Updated..!"})
 })
 
-app.delete("/delete",async (req,res)=>{
+app.delete("/delete",userMiddleWare,async (req,res)=>{
     const id=req.body.id;
     await Todo.deleteOne({
         _id:id

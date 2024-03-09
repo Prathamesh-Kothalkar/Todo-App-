@@ -6,17 +6,24 @@ function Form() {
     const [arr, setArr] = useState([])
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
-   
+    const token = localStorage.getItem("token")
 
     useEffect(() => {
-        fetch("http://192.168.56.1:3000/todos")
+        console.log(token)
+        fetch("http://localhost:3000/todos",{
+            method:"GET",
+            headers:{
+                'Content-type':'application/json',
+                'authorization':token
+            }
+        })
             .then((res) => {
                 return res.json()
             })
             .then((data) => {
                 setArr(data.Todos)
             })
-    },[createTodo])
+    },[])
     return (
         <>
             <Navbar visible={true}/>
@@ -42,11 +49,13 @@ function Form() {
 
     function createTodo(e) {
         e.preventDefault();
+        //const token = localStorage.getItem("token")
         if ((title && desc)) {
             fetch("http://localhost:3000/todo", {
                 method: "POST",
                 headers: {
-                    'Content-type': 'application/json'
+                    'Content-type': 'application/json',
+                    'authorization':token
                 },
                 body: JSON.stringify({
                     title: title,
@@ -54,7 +63,7 @@ function Form() {
                 })
             })
             .then(() => { alert("Added")
-        setCreateTodoFlag(true) })
+         })
             .catch((e) => console.log(e))
 
             setTitle("");

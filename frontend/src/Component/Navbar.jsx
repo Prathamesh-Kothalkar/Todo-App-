@@ -1,7 +1,9 @@
 import React from "react";
 import { CiLogin } from "react-icons/ci";
 import "../Style/navbar.css"
+import { useNavigate } from "react-router-dom";
 function Navbar(props) {
+    const navigate = useNavigate();
     return (
         <>
             <div className="nav">
@@ -10,7 +12,10 @@ function Navbar(props) {
                 </div>
                 {
                     props.visible? <div className="login">
-                    <CiLogin color="white" fontSize={"4em"} onClick={() => { alert("Login") }} style={{ cursor: "pointer" }} />
+                    <CiLogin color="white" fontSize={"4em"} onClick={() => {
+                        localStorage.clear();
+                        navigate("/")
+                        }} style={{ cursor: "pointer" }} />
                 </div>:""
                 }
                

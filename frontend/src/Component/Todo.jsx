@@ -3,7 +3,7 @@ import { CiCircleRemove } from "react-icons/ci";
 import '../Style/todo.css'
 function Todo({ todos }) {
 
-    console.log({ todos })
+    const token = localStorage.getItem("token")
     return (
         <>
             <div className="todos">
@@ -34,7 +34,8 @@ function Todo({ todos }) {
         fetch("http://localhost:3000/completed", {
             method: "PUT",
             headers: {
-                'Content-type': 'application/json'
+                'Content-type': 'application/json',
+                'authorization':token
             },
             body: JSON.stringify({
                 id: e
@@ -46,7 +47,8 @@ function Todo({ todos }) {
         fetch("http://localhost:3000/delete",{
             method:"DELETE",
             headers:{
-                'Content-type':'application/json'
+                'Content-type':'application/json',
+                'authorization':token
             },
             body:JSON.stringify({
                 id:e

@@ -27,6 +27,8 @@ function Login() {
                 return res.json()
             }).then((data) => {
                 if (data.msg) {
+                    //console.log()
+                    localStorage.setItem("token",data.jwt)
                     alert("User login Sucessfully")
                     setUsername("");
                     setPassword("");

@@ -6,8 +6,9 @@
   - User can Delete Todo
   - User can Signup and Signin (like admin only)
   ## Techstack
+    <h3>Frontend</h3>
   - Frontend <b> npm create vite@latest </b> (React.js)
-     <h4>Backend </h4>
+     <h3>Backend </h3>
   - To store user data and Todo info <b>MongoDb</b>
   - To authentication and authorization <b>jsonwebtoken</b> (JWT)
   - To validate backends input <b>zod</b> 

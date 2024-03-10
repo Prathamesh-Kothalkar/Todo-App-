@@ -8,9 +8,9 @@
   ## Techstack
   - Frontend <b> npm create vite@latest </b> (React.js)
      <h4>Backend </h4>
-    - To store user data and Todo info <b>MongoDb</b>
-    - To authentication and authorization <b>jsonwebtoken</b> (JWT)
-    - To validate backends input <b>zod</b> 
-    - <b>Express.js & Node.js</b>
+  - To store user data and Todo info <b>MongoDb</b>
+  - To authentication and authorization <b>jsonwebtoken</b> (JWT)
+  - To validate backends input <b>zod</b> 
+  - <b>Express.js & Node.js</b>
 
  

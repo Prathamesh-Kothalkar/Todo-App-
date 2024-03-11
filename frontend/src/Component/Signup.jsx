@@ -27,7 +27,7 @@ function Signup(){
                     alert("User created Sucessfully")
                     setUsername("");
                     setPassword("");
-                    navigate('/')
+                    navigate('/login')
                 }
                 else{
                     alert("Check Username and Password: username must have unqiue and 3+ password 6+")

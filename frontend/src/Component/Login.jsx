@@ -32,7 +32,7 @@ function Login() {
                     alert("User login Sucessfully")
                     setUsername("");
                     setPassword("");
-                    navigate('/home')
+                    navigate('/')
                 }
                 else {
                     alert("User not exitsed")

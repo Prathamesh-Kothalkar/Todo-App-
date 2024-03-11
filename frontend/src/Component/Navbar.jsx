@@ -14,7 +14,7 @@ function Navbar(props) {
                     props.visible? <div className="login">
                     <CiLogin color="white" fontSize={"4em"} onClick={() => {
                         localStorage.clear();
-                        navigate("/")
+                        navigate("/login")
                         }} style={{ cursor: "pointer" }} />
                 </div>:""
                 }

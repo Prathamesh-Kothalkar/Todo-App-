@@ -26,16 +26,17 @@ function Login() {
             }).then((res) => {
                 return res.json()
             }).then((data) => {
-                if (data.msg) {
+                if (!data.msg || data.msg == "Invalid User") {
                     //console.log()
-                    localStorage.setItem("token",data.jwt)
+                    alert("User not exitsed")
+                }
+                else {
+
+                    localStorage.setItem("token", data.jwt)
                     alert("User login Sucessfully")
                     setUsername("");
                     setPassword("");
                     navigate('/')
-                }
-                else {
-                    alert("User not exitsed")
                 }
             }
             )

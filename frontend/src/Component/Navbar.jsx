@@ -11,14 +11,14 @@ function Navbar(props) {
                     <h1>Todo App</h1>
                 </div>
                 {
-                    props.visible? <div className="login">
-                    <CiLogin color="white" fontSize={"4em"} onClick={() => {
-                        localStorage.clear();
-                        navigate("/login")
+                    props.visible ? <div className="login">
+                        <CiLogin color="white" fontSize={"4em"} onClick={() => {
+                            localStorage.clear();
+                            navigate("/login")
                         }} style={{ cursor: "pointer" }} />
-                </div>:""
+                    </div> : ""
                 }
-               
+
             </div>
 
         </>

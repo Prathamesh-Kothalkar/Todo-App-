@@ -30,7 +30,7 @@ app.post("/signup",async (req,res)=>{
     })
 
     res.json({
-        msg:"User register Successfully"
+        msg:true
     })
     }
     else{
@@ -64,7 +64,11 @@ app.post("/signin",async (req,res)=>{
                 msg:false
             })
         }
-
+    }
+    else{
+        res.send({
+            msg:"Invalid User"
+        })
     }
 })
 

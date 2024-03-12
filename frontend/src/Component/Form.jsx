@@ -12,11 +12,11 @@ function Form() {
 
     useEffect(() => {
         console.log(token)
-        fetch("http://localhost:3000/todos",{
-            method:"GET",
-            headers:{
-                'Content-type':'application/json',
-                'authorization':token
+        fetch("http://localhost:3000/todos", {
+            method: "GET",
+            headers: {
+                'Content-type': 'application/json',
+                'authorization': token
             }
         })
             .then((res) => {
@@ -26,14 +26,43 @@ function Form() {
                 console.log(data.Todos)
                 setArr(data.Todos)
             })
-            .catch((err)=>{
+            .catch((err) => {
                 navigate("/error")
                 console.log("You are not logined }")
             })
-    },[createTodo])
+    }, [createTodo])
+
+    function createTodo(e) {
+        e.preventDefault();
+        //const token = localStorage.getItem("token")
+        if ((title && desc)) {
+            fetch("http://localhost:3000/todo", {
+                method: "POST",
+                headers: {
+                    'Content-type': 'application/json',
+                    'authorization': token
+                },
+                body: JSON.stringify({
+                    title: title,
+                    desc: desc
+                })
+            })
+                .then(() => {
+                    alert("Added")
+                })
+                .catch((e) => console.log(e))
+
+            setTitle("");
+            setDesc("");
+        }
+        else {
+            alert("All fields are required")
+        }
+    }
+    
     return (
         <>
-            <Navbar visible={true}/>
+            <Navbar visible={true} />
             <form>
 
                 <input type="text" name="title" id="title"
@@ -54,32 +83,7 @@ function Form() {
 
     )
 
-    function createTodo(e) {
-        e.preventDefault();
-        //const token = localStorage.getItem("token")
-        if ((title && desc)) {
-            fetch("http://localhost:3000/todo", {
-                method: "POST",
-                headers: {
-                    'Content-type': 'application/json',
-                    'authorization':token
-                },
-                body: JSON.stringify({
-                    title: title,
-                    desc: desc
-                })
-            })
-            .then(() => { alert("Added")
-         })
-            .catch((e) => console.log(e))
-
-            setTitle("");
-            setDesc("");
-        }
-        else {
-            alert("All fields are required")
-        }
-    }
+   
 
 }
 

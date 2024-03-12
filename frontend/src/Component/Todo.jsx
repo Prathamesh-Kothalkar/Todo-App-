@@ -4,6 +4,38 @@ import '../Style/todo.css'
 function Todo({ todos }) {
 
     const token = localStorage.getItem("token")
+
+    function setState(e) {
+        fetch("http://localhost:3000/completed", {
+            method: "PUT",
+            headers: {
+                'Content-type': 'application/json',
+                'authorization': token
+            },
+            body: JSON.stringify({
+                id: e
+            })
+        })
+    }
+
+    function deletedTodo(e) {
+        fetch("http://localhost:3000/delete", {
+            method: "DELETE",
+            headers: {
+                'Content-type': 'application/json',
+                'authorization': token
+            },
+            body: JSON.stringify({
+                id: e
+            })
+        })
+            .then(() => {
+                alert("Removed..!")
+            }
+            )
+            .catch((err) => console.log(err))
+    }
+    
     return (
         <>
             <div className="todos">
@@ -30,36 +62,7 @@ function Todo({ todos }) {
             </div>
         </>
     )
-    function setState(e) {
-        fetch("http://localhost:3000/completed", {
-            method: "PUT",
-            headers: {
-                'Content-type': 'application/json',
-                'authorization':token
-            },
-            body: JSON.stringify({
-                id: e
-            })
-        })
-    }
 
-    function deletedTodo(e){
-        fetch("http://localhost:3000/delete",{
-            method:"DELETE",
-            headers:{
-                'Content-type':'application/json',
-                'authorization':token
-            },
-            body:JSON.stringify({
-                id:e
-            })
-        })
-        .then(()=>{
-            alert("Removed..!")
-        }
-        )
-        .catch((err)=>console.log(err))
-    }
 
 }
 
